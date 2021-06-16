@@ -1,0 +1,31 @@
+<div v-if="index == 1" class="chat-container">
+
+    <div class="chat-header">
+        <i @click="index = 0" class='bx bx-arrow-back'></i>
+        <div class="ref">
+            <img src="/static/images/bot.webp">
+            <h3>Bot</h3>
+        </div>
+        <i class='bx bx-cog' ></i>
+    </div>
+    
+    <div v-if="chat.length == 0" class="without-message-content" @click="sendHello">
+        <i class='bx bxs-message-square-detail bx-flashing'></i>
+        <h3>Contesta el saludo con un "Hola"</h3>
+        <h3>O</h3>
+        <h3>Click aquí para responder el saludo</h3>
+    </div>
+    <div v-else class="chat-message-content">
+        <div class="chats" ref="chat">
+            <div v-for="message in chat" v-bind:class="{'user': message.user, 'bot': message.chat_bot }">
+                    <h3>[[ message.text ]]</h3>
+            </div>
+        </div>
+    </div>
+    
+    <div class="chat-input">
+        <textarea v-model="input" rows="1" :placeholder="placeholder"></textarea>
+        <button v-on:click="sendMessage"><i class='bx bxs-send' ></i></button>
+    </div>
+
+</div>

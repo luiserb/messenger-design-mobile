@@ -1,0 +1,181 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+{% block head_title %}Pigeon{% endblock %}
+
+
+{% block content %}
+    <main class="pigeon">
+        {% include 'components/preloader.html' %}
+        {% include 'components/header.html' %}
+        {% include 'components/messages.html' %}
+        {% include 'components/chat.html' %}
+        {% include 'components/navbar.html' %}
+    </main>
+{% endblock %}
+
+{% block js %}
+<script>
+    const app = Vue.createApp({
+        delimiters: ['[[', ']]'],
+        data() {
+            return {
+                index: 0,
+                newMessage: true,
+                showPreloader: true,
+                bot: false,
+                users: [
+                    {
+                        'name': 'Elon Musk',
+                        'image': '/static/images/elon-musk.webp',
+                        'status': 'avalaible',
+                        'message': 'Te necesitamos en SpaceX.',
+                        'sent': '19:05'
+                    },
+                    {
+                        'name': 'Bill Gates',
+                        'image': '/static/images/bill-gates.webp',
+                        'status': 'busy',
+                        'message': '¿Quieres ser mi socio?',
+                        'sent': '15:17'
+                    },
+                    {
+                        'name': 'Scarlett Johansson',
+                        'image': '/static/images/scarlett-johansson.webp',
+                        'status': 'avalaible',
+                        'message': '¿Por qué me dejas en visto?',
+                        'sent': '18:43'
+                    },
+                    {
+                        'name': 'Albert Einstein',
+                        'image': '/static/images/albert-einstein.webp',
+                        'status': 'busy',
+                        'message': 'Depende. Todo es relativo, mijo.',
+                        'sent': '22:03'
+                    },
+                ],
+                images: [
+                    {
+                        'image': '/static/images/nikola-tesla.webp'
+                    },
+                    {
+                        'image': '/static/images/jennifer-lopez.webp'
+                    },
+                    {
+                        'image': '/static/images/lionel-messi.webp'
+                    },
+                    {
+                        'image': '/static/images/mark-zuckerberg.webp'
+                    },
+                    {
+                        'image': '/static/images/kat-dennings.webp'
+                    }
+                ],
+                // box chat
+                chat: [],
+                input: '',
+                send_blank: false,
+                placeholder: 'Escribe un mensaje...'
+            }
+        },
+        methods: {
+            preloaderFuction(){
+                setTimeout(() =>{
+                    this.showPreloader = false;
+                }, 7000)
+            },
+            botActive(){
+                setTimeout(() =>{
+                    this.bot = true;
+                }, 18000)
+            },
+            sendMessage(){
+                let soundSendMessage = new Audio("{% static 'sound/message.mp3' %}");
+                let soundReceivedMessage = new Audio("{% static 'sound/message_2.mp3' %}");
+                if(this.input.length > 0){
+                    let message = {
+                        'text': this.input,
+                        'user': true,
+                        'chat_bot': false
+                    };
+
+                    this.chat.push(message);
+                    this.input = '';
+                    soundReceivedMessage.play();
+
+                    this.send_blank = false;
+                    this.placeholder = 'Respondele al Bot...';
+
+                    fetch('/api/v1/chatbot/',{
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token}}'
+                        },
+                        credentials: 'same-origin',
+                        body: JSON.stringify({'message': message['text']})
+                    })
+                    .then(response => response.json())
+                    .then((json) =>{
+                        this.chat.push(json['message']);
+                        soundSendMessage.play();
+                    })
+                }else{
+                    this.send_blank = true;
+                    this.placeholder = 'No puedes envíar un mensaje vacío...';
+                }
+            },
+
+            sendHello(){
+                let soundSendMessage = new Audio("{% static 'sound/message.mp3' %}");
+                let soundReceivedMessage = new Audio("{% static 'sound/message_2.mp3' %}");
+
+                let message = {
+                    'text': 'Hola',
+                    'user': true,
+                    'chat_bot': false
+                };
+                
+                this.chat.push(message);
+                soundReceivedMessage.play();
+                
+                fetch('/api/v1/chatbot/',{
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token}}'
+                        },
+                        credentials: 'same-origin',
+                        body: JSON.stringify({'message': message['text']})
+                })
+                .then(response => response.json())
+                .then((json) =>{
+                    this.chat.push(json['message']);
+                    soundSendMessage.play();
+                })
+            },
+            messageScroll(){
+                let c = this.$refs.chat;
+                c.scrollTop = c.scrollHeight;
+            },
+            
+        },
+        mounted() {
+            this.preloaderFuction();
+            this.botActive();
+        },
+        updated() {
+            if(this.index == 1){
+                this.newMessage = false;
+            }
+
+            if(this.index == 1 && this.chat.length > 0){
+                this.messageScroll();
+            }
+            
+        },
+    })
+    app.mount('.pigeon')
+</script>
+{% endblock %}

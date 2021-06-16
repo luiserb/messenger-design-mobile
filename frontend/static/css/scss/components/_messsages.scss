@@ -1,0 +1,90 @@
+.messenger{
+    margin: 2.2rem 1rem 6rem 1rem;
+    .user-messages{
+        display: flex;
+        align-items: center;
+        margin: 1.2rem 0;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        .image-content{
+            width: 22%;
+            position: relative;
+            img{
+                width: 60px;
+                border-radius: 20px;
+                height: 60px;
+                object-fit: cover;
+            }
+            .status{
+                height: 15px;
+                width: 15px;
+                position: absolute;
+                left: 48px;
+                bottom: 0;
+                border-radius: 100%;
+                border: 3px solid $light-color;
+            }
+            .avalaible{
+                background-color: #0dd60d;
+            }
+            .busy{
+                background-color: #e41111;
+            }
+        }
+        .message-content{
+            display: flex;
+            flex-direction: column;
+            width: 77%;
+            .information-message{
+                display: flex;
+                align-items: baseline;
+                justify-content: space-between;
+                h2{
+                    font-size: $normal-font-size;
+                }
+                h3{
+                    font-size: .6rem;
+                    color: $text-color-light;
+                }
+            }
+            .message{
+                margin: .15rem 0;
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                align-items: center;
+                h3{
+                    font-size: $smaller-font-size;
+                    color: $text-color-light;
+                }
+                .notification{
+                    padding: .25rem .5rem;
+                    background-color: #e41111;
+                    border-radius: 7px;
+                    color: $light-color;
+                    font-family: sans-serif;
+                }
+            }
+        }
+    }
+}
+
+
+@keyframes intro-message {
+    0% {
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
+    }
+    100% {
+        -webkit-transform: translateY(-100px);
+                transform: translateY(-100px);
+                opacity: .5;
+    }
+}
+
+.new-message-enter-active{
+    animation: intro-message 1.5s reverse;
+    background-color: $secondary-color;
+    border-radius: 10px;
+    color: $light-color;
+}

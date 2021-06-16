@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- metatags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#9504f1">
+
+    <meta name="author" content="Luiserb">
+    <meta name="description" content="Messenger Pigeon (mobile version) by Luiserb">
+    <link rel="canonical" href="https://github.com/luiserb/"> 
+    
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Messenger Pigeon (mobile version) by Luiserb">
+    <meta property="og:description" content="Designed web by Luiserb">
+    <meta property="og:url" content="https://github.com/luiserb/">
+    <meta property="og:site_name" content="Luis Eduardo Romero">
+    <meta property="article:publisher" content="https://www.facebook.com/LouisERB21">
+    <meta property="article:section" content="Github pages">
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/68169211?v=4">
+    <meta property="og:image:secure_url" content="https://avatars.githubusercontent.com/u/68169211?v=4">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+
+    <!-- links -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    
+    <title>{% block head_title %}{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+
+    <script src="https://unpkg.com/vue@next"></script>
+    {% block js %}
+    {% endblock %}
+</body>
+</html>

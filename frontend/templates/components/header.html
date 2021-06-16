@@ -1,0 +1,15 @@
+<header v-if="index == 0">
+    <div class="header">
+        <div class="title">
+            <h3>Pigeon</h3>
+        </div>
+        <div class="subtitle">
+            <h3>Inicia una</h3>
+            <h3>nueva conversación</h3>
+        </div>
+        <div class="search">
+            <i class='bx bx-search' ></i>
+            <img v-for="i in images" :src="i.image">
+        </div>
+    </div>
+</header>

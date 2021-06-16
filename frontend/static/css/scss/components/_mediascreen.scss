@@ -1,0 +1,39 @@
+@media screen and(min-width: 500px) {
+    .pigeon{
+        max-width: 500px;
+        width: calc(100% - 2rem);
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .navbar-container{
+        max-width: 500px;
+        width: calc(100% - 2rem);
+        margin-left: auto;
+        margin-right: auto;
+        right: 0;
+        left: 0;
+    }
+    .chat-input{
+        max-width: 500px;
+        width: calc(100% - 2rem);
+        margin-left: auto;
+        margin-right: auto;
+        height: 6% !important;
+    }
+}
+@media screen and (min-height: 750px){
+    .navbar-container{
+        height: 8.25rem;
+    }
+    .without-message-content{
+        bottom: 55% !important;
+    }
+    .chat-input{
+        bottom: 20% !important;
+        border-radius: 5rem;
+        height: 8%;
+    }
+    .chats{
+        height: 61vh !important;
+    }
+}

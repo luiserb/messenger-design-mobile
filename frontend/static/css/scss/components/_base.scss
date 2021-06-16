@@ -1,0 +1,40 @@
+*, ::before, ::after{
+    box-sizing: border-box;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    margin: 0;
+    line-height: 1.1;
+    background-color: $light-color;
+    font-family: 'Poppins', sans-serif;
+    color: $text-color;
+}
+
+h1, h2, h3, ul, p{
+    margin: 0;
+}
+
+ul{
+    padding: 0;
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}

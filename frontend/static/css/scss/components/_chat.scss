@@ -1,0 +1,132 @@
+.chat-container{
+    margin: .75rem 1rem;
+    .chat-header{
+        display: flex;
+        justify-content: space-between;
+        color: $secondary-color;
+        align-items: center;
+        background-color: $light-color;
+        z-index: 10;
+        i{
+            font-size: 26px;
+        }
+        .ref{
+            display: flex;
+            align-items: center;
+            img{
+                width: 35px;
+                margin: 0 .25rem;
+            }
+        }
+
+    }
+    .without-message-content{
+        animation: message 2s;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 40%;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        overflow: hidden;
+        color: $text-color-light;
+        z-index: -1;
+        i{
+            font-size: 120px;
+            margin: 1rem 0;
+        }
+        h3{
+            font-size: $normal-font-size;
+        }
+    }
+    .chat-message-content{
+        .chats{
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+            height: 70vh;
+            margin: 1rem 0;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            padding: .4rem;
+            .user{
+                margin: .35rem 1.2rem .45rem 0;
+                align-self: flex-end;
+                max-width: 75%;
+                background: $secondary-color;
+                padding: .75rem;
+                color: $light-color;
+                font-size: $smaller-font-size;
+                animation: message 2s;
+                min-width: 30%;
+                border-radius: 1.7rem 1.7rem .3rem 1.7rem;
+                box-shadow: 0px 8px 16px -8px $secondary-color;
+            }
+            .bot{
+                margin: .35rem 0 .45rem 1.2rem;
+                align-self: flex-start;
+                max-width: 75%;
+                background: $text-color;
+                animation: message 2s;
+                padding: .75rem;
+                color: $light-color;
+                font-size: $smaller-font-size;
+                min-width: 30%;
+                border-radius: .3rem 1.7rem 1.7rem 1.7rem;
+                box-shadow: 0px 8px 16px -8px $text-color;
+            }
+        }
+        
+    }
+    .chat-input{
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        background: #fff;
+        padding: 1rem;
+        textarea{
+            width: 85%;
+            border: none;
+            resize: none;
+            outline: none;
+            overflow: hidden;
+            font-size: $h3-font-size;
+            color: $text-color;
+        }
+        button{
+            width: 15%;
+            border: none;
+            background: none;
+            color: $secondary-color;
+            outline: none;
+            animation: message 2s;
+            i{
+                font-size: 30px;
+            }
+        }
+        button:hover{
+            outline: none;
+            color: $text-color-light;
+        }
+    }
+}
+
+
+// animation
+@keyframes message{
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.25);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

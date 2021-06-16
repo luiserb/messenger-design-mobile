@@ -1,0 +1,43 @@
+<div v-if="index == 0" class="messenger">
+
+    <transition name="new-message">
+        <div v-if="bot" class="user-messages" @click="index = 1">
+            <div class="image-content">
+                <img src="/static/images/bot.webp">
+                <div class="status avalaible">
+                </div>
+            </div>
+            <div class="message-content">
+                <div class="information-message">
+                    <h2>Bot</h2>
+                    <h3>Ahora mismo</h3>
+                </div>
+                <div v-if="chat.length == 0" class="message">
+                    <h3>¡Te ha enviado un saludo!</h3>
+                    <h3 v-if="newMessage" class="notification">1</h3>
+                </div>
+                <div v-else class="message">
+                    <h3>[[ chat[chat.length - 1].text ]]</h3>
+                </div>
+            </div>
+        </div>
+    </transition>
+
+    <div v-for="user in users" :key="user" class="user-messages">
+        <div class="image-content">
+            <img :src="user.image">
+            <div class="status" :class="{'busy': user.status == 'busy', 'avalaible': user.status == 'avalaible'}">
+            </div>
+        </div>
+        <div class="message-content">
+            <div class="information-message">
+                <h2>[[user.name]]</h2>
+                <h3>[[user.sent]]</h3>
+            </div>
+            <div class="message">
+                <h3>[[user.message]]</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
